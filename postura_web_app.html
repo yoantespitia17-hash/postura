@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Recordatorio de Buena Postura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 12px;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    #qr {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧍 Buena Postura</h1>
+
+  <div class="card">
+    <h2>Recordatorio</h2>
+    <p id="reminder">Mantén la espalda recta y los hombros relajados.</p>
+    <button onclick="startReminder()">Activar recordatorio cada 10 min</button>
+  </div>
+
+  <div class="card">
+    <h2>Ejercicio recomendado</h2>
+    <p id="exercise">Presiona el botón para ver un ejercicio</p>
+    <button onclick="newExercise()">Nuevo ejercicio</button>
+  </div>
+
+  <div class="card">
+    <h2>Escanea esta página</h2>
+    <div id="qr"></div>
+  </div>
+
+<script>
+  function startReminder() {
+    alert("Recordatorio activado. Recibirás avisos cada 10 minutos.");
+    setInterval(() => {
+      alert("¡Corrige tu postura! Espalda recta 👌");
+    }, 600000);
+  }
+
+  const exercises = [
+    "Estiramiento de cuello: inclina la cabeza suavemente hacia un lado por 10 segundos.",
+    "Retracción escapular: junta los omóplatos y mantén 5 segundos.",
+    "Extensión de espalda: coloca las manos en la cintura y arquea ligeramente.",
+    "Rotaciones de hombros: gira los hombros hacia atrás 10 veces.",
+    "Postura de pared: apoya espalda y cabeza contra la pared por 1 minuto."
+  ];
+
+  function newExercise() {
+    const random = Math.floor(Math.random() * exercises.length);
+    document.getElementById("exercise").innerText = exercises[random];
+  }
+
+  // Generar QR con la URL actual
+  const qr = new QRCode(document.getElementById("qr"), {
+    text: window.location.href,
+    width: 200,
+    height: 200
+  });
+</script>
+
+</body>
+</html>
